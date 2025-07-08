@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 
 #define MAXBUFFER 200
 
@@ -13,6 +14,7 @@ class Automato {
         int qntdEstados;
         vector<char> alfabeto;
         vector<int> estadosFinais;
+        vector<vector<pair<int, char>>> transicoes;
     
     public:
         Automato();
@@ -21,6 +23,7 @@ class Automato {
         void lerAlfabeto(FILE *f);
         void lerEstados(FILE *f);
         void lerEstadosFinais(FILE *f);
+        void lerTransicoes(FILE *f);
 };
 
 #endif

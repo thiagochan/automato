@@ -34,6 +34,8 @@ void Automato::lerEstados(FILE *f) {
         if (separador[0]==',') numVirgulas++;
     }
     this->qntdEstados = numVirgulas+1;
+
+    this->transicoes.resize(this->qntdEstados);
 }
 
 void Automato::lerEstadosFinais(FILE *f) {
@@ -50,6 +52,20 @@ void Automato::lerEstadosFinais(FILE *f) {
     }
 }
 
+void Automato::lerTransicoes(FILE *f) {
+    char entrada[10], transicao[2], saida[10];
+    while(fscanf(f, " ( %[^,] , %c ) = %s", entrada, transicao, saida) == 3) {
+        int e = 0, s = 0;
+        for(int i = strlen(entrada)-1, k=0; i > 0; i--, k++) {
+            e += (entrada[i] - '0') * pow(10, k);
+        }
+        for(int i = strlen(saida)-1, k=0; i > 0; i--, k++) {
+            s += (saida[i] - '0') * pow(10, k);
+        }
+        this->transicoes[e].push_back({s, transicao[0]});
+    }
+}
+
 Automato::Automato() {
     printf("Digite o nome do arquivo: ");
     
@@ -63,6 +79,7 @@ Automato::Automato() {
     lerEstados(f);
     lerAteChaveEsquerda(f);
     lerEstadosFinais(f);
+    lerTransicoes(f);
 
     fclose(f);
 }
