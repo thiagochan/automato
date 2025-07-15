@@ -19,12 +19,13 @@ class Automato {
     public:
         Automato();
         ~Automato();
-        void Automato::imprimirGramatica();
+        void imprimirGramatica();
         void lerAteChaveEsquerda(FILE *f);
         void lerAlfabeto(FILE *f);
         void lerEstados(FILE *f);
         void lerEstadosFinais(FILE *f);
         void lerTransicoes(FILE *f);
+        void processaCadeia(string cadeia, int iterador = 0);
 };
 
 #endif

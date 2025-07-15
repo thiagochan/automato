@@ -112,6 +112,43 @@ void Automato::imprimirGramatica(){
         
     }
 }
+void Automato::processaCadeia(string cadeia, int iterador) {
+    cout << "[q" << iterador << ']' << cadeia << endl;
+
+    if (cadeia.empty() || cadeia[0] == '@') {
+        for (int i = 0; i < this->estadosFinais.size(); i++) {
+            if (iterador == this->estadosFinais[i]) {
+                cout << "ACEITA" << endl;
+                return;
+            }
+        }
+
+        cout << "REJEITA" << endl;
+        return;
+    }
+
+    if (this->transicoes[iterador].empty()) {
+        cout << "REJEITA" << endl;
+        return;
+    }
+
+    if (this->alfabeto.empty()) {
+        cout << "REJEITA" << endl;
+        return;
+    }
+
+    for (int i = 0; i < this->transicoes[iterador].size(); i++) {
+        if (this->transicoes[iterador][i].second == cadeia[0]) {
+            char letra = cadeia[0];
+            cadeia.erase(0, 1); 
+            processaCadeia(cadeia, this->transicoes[iterador][i].first);
+            return;
+        }
+    }
+
+    cout << "REJEITA" << endl;
+    return;
+}
 
 Automato::Automato() {
     printf("Digite o nome do arquivo: ");
