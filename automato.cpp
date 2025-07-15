@@ -66,6 +66,53 @@ void Automato::lerTransicoes(FILE *f) {
     }
 }
 
+void Automato::imprimirGramatica(){
+
+    for(int i = 0; i<this->transicoes.size(); i++){
+
+            int auxestado;
+            char estado;
+
+            if(i==0){
+                estado = 'S';
+            }
+            else{
+                auxestado = i>18 ? 0 : 1 ;
+                estado = i + 'A' - auxestado;
+            }
+            cout<<estado<<" -> ";
+    
+            for(int j = 0; j<this->transicoes[i].size(); j++){
+                cout<<this->transicoes[i][j].second;
+
+                int aux;
+                char letra;
+
+                if(this->transicoes[i][j].first==0){
+                    letra = 'S';
+                }
+
+                else{
+                aux = this->transicoes[i][j].first>18 ? 0 : 1;
+                letra = this->transicoes[i][j].first + 'A' - aux;
+                }
+                cout<<letra;
+
+                if(j == this->transicoes[i].size()-1) break;
+
+                cout<<" | ";
+
+            } 
+
+            for(int j = 0; j<this->estadosFinais.size(); j++){
+                if(this->estadosFinais[j]==i) cout<<" | @";
+            }
+
+            cout<<endl;
+        
+    }
+}
+
 Automato::Automato() {
     printf("Digite o nome do arquivo: ");
     

@@ -19,6 +19,7 @@ class Automato {
     public:
         Automato();
         ~Automato();
+        void Automato::imprimirGramatica();
         void lerAteChaveEsquerda(FILE *f);
         void lerAlfabeto(FILE *f);
         void lerEstados(FILE *f);
