@@ -24,6 +24,7 @@ class Automato {
         void lerEstados(FILE *f);
         void lerEstadosFinais(FILE *f);
         void lerTransicoes(FILE *f);
+        void processaCadeia(string cadeia, int iterador = 0);
 };
 
 #endif
