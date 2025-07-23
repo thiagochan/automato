@@ -83,6 +83,9 @@ void Automato::lerTransicoes(FILE *f) {
     }
 }
 
+// Imprime a gramática equivalente ao autômato em notação formal
+// Pré-condição: o autômato já foi inicializado com transições e estados finais
+// Pós-condição: exibe no terminal a gramática correspondente ao autômato
 void Automato::imprimirGramatica(){
 
     for(int i = 0; i<this->transicoes.size(); i++){
@@ -129,6 +132,10 @@ void Automato::imprimirGramatica(){
         
     }
 }
+
+// Processa uma cadeia de entrada e verifica se é aceita pelo autômato
+// Pré-condição: o autômato já foi inicializado com estados, alfabeto e transições
+// Pós-condição: imprime a transição de estados e informa se a cadeia foi aceita ou rejeitada
 void Automato::processaCadeia(string cadeia, int iterador) {
     cout << "[q" << iterador << ']' << cadeia << endl;
 

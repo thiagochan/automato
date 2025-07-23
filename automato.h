@@ -25,6 +25,9 @@ class Automato {
         // Pré-condição: nenhum
         // Pós-condição: autômato é destruído
         ~Automato();
+        // Imprime a gramática equivalente ao autômato em notação formal
+        // Pré-condição: o autômato já foi inicializado com transições e estados finais
+        // Pós-condição: exibe no terminal a gramática correspondente ao autômato
         void imprimirGramatica();
         // Avança o cursor do arquivo pro caracter logo depois de uma chave esquerda
         // Pré-condição: arquivo está aberto para leitura
@@ -47,6 +50,9 @@ class Automato {
         // Pré-condição: arquivo está aberto para leitura
         // Pós-condição:insere no automato as transições
         void lerTransicoes(FILE *f);
+        // Processa uma cadeia de entrada e verifica se é aceita pelo autômato
+        // Pré-condição: o autômato já foi inicializado com estados, alfabeto e transições
+        // Pós-condição: imprime a transição de estados e informa se a cadeia foi aceita ou rejeitada
         void processaCadeia(string cadeia, int iterador = 0);
 };
 
