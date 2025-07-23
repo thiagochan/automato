@@ -6,14 +6,22 @@
 #include <math.h>
 
 using namespace std;
-
+// Destrutor
+// Pré-condição: nenhum
+// Pós-condição: autômato é destruído
 Automato::~Automato() {}
 
+// Avança o cursor do arquivo pro caracter logo depois de uma chave esquerda
+// Pré-condição: arquivo está aberto para leitura
+// Pós-condição: cursor do arquivo para no caracter logo depois de um {
 void Automato::lerAteChaveEsquerda(FILE *f) {
     char c[2];
     while(fread(c, sizeof(char), 1, f) != EOF && *c != '{');
 }
 
+// Adiciona os símbolos do alfabeto ao autômato
+// Pré-condição: arquivo está aberto para leitura
+// Pós-condição: cursor do arquivo para logo depois de um } e automato contém
 void Automato::lerAlfabeto(FILE *f) {
     char c[2], separador[2];
     separador[0] = 'a';
@@ -24,6 +32,9 @@ void Automato::lerAlfabeto(FILE *f) {
     }
 }
 
+// Lê a quantidade de estados e atualiza o automato
+// Pré-condição: arquivo está aberto para leitura
+// Pós-condição: quantidade de estados é inicializada no autômato
 void Automato::lerEstados(FILE *f) {
     char c[3], separador[2];
     int numVirgulas = 0;
@@ -38,6 +49,9 @@ void Automato::lerEstados(FILE *f) {
     this->transicoes.resize(this->qntdEstados);
 }
 
+// Lê a quantidade de estados finais e atualiza o automato
+// Pré-condição: arquivo está aberto para leitura
+// Pós-condição: insere no automato os estados finais
 void Automato::lerEstadosFinais(FILE *f) {
     char c[3], separador[2], numero[10];
     separador[0] = 'c';
@@ -52,6 +66,9 @@ void Automato::lerEstadosFinais(FILE *f) {
     }
 }
 
+// Lê as transições e atualiza o automato
+// Pré-condição: arquivo está aberto para leitura
+// Pós-condição:insere no automato as transições
 void Automato::lerTransicoes(FILE *f) {
     char entrada[10], transicao[2], saida[10];
     while(fscanf(f, " ( %[^,] , %c ) = %s", entrada, transicao, saida) == 3) {
@@ -150,6 +167,9 @@ void Automato::processaCadeia(string cadeia, int iterador) {
     return;
 }
 
+// Inicializa o automato
+// Pré-condição: nenhum
+// Pós-condição: autômato é inicializado com dados do arquivo
 Automato::Automato() {
     printf("Digite o nome do arquivo: ");
     
