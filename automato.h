@@ -25,6 +25,9 @@ class Automato {
         // Pré-condição: nenhum
         // Pós-condição: autômato é destruído
         ~Automato();
+        // Imprime a gramática equivalente ao autômato em notação formal
+        // Pré-condição: o autômato já foi inicializado com transições e estados finais
+        // Pós-condição: exibe no terminal a gramática correspondente ao autômato
         void imprimirGramatica();
         // Avança o cursor do arquivo pro caracter logo depois de uma chave esquerda
         // Pré-condição: arquivo está aberto para leitura
